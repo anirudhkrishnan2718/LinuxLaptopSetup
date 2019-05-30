@@ -4,7 +4,133 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{hyperref}
+
+\title{Setting up a fresh Linux Install on a Laptop}
+\author{Anirudh Krishnan}
+\date{\today}
+
 \begin{document}
-	fhlksdjfds \\ 
-	ahfdlsajflksd
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Pre Installation}
+
+Pick a distribution. Ubuntu Used here due to extensive online help and debian being a user friendly package installer. Second preference for Linux Mint. \\
+
+Pre-install involves deciding whether to Dual Boot with Windows or to Single boot Linux. Dual Booting with Windows requires Windows to be installed first because it does not have a Boot Manager to manage Linux alongside it. \\
+
+Laptops may require these BIOS level settings changes for Dual Boot:
+
+\begin{itemize}
+	\item SecureBoot turned off (new laptops)
+	\item Raid Mode turned off (manufacturer might have set Raid-0 mode On)
+\end{itemize}
+
+The simpler option is to solo-install Linux, which is what this document covers.
+
+\subsection{Downloading the Linux Image}
+
+Princeton Mathematics is the best mirror in the official list. Download either the long-term support version (released once every 4 years) or the latest stable release (releaed every 6 months). Look for the file resembling \\ 
+
+\texttt{ubuntu-YY.MM-desktop-amd64.iso} \\
+
+The ISO file, a USB stick and an existing Windows or Linux machine are required to start creating the Bootble media.
+
+
+
+\subsection{Bootable Media}
+Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.), Etcher by Balena is a cross platform neatly packaged app that makes bootable USBs. Download the app (AppImage format for Linux so it works across distros) and follow instructions to create a bootable USB. USB stick of size at least 4 GB required.\\
+
+\url{https://www.balena.io/etcher/} \\
+
+\newpage
+
+\section{Installation}
+
+\subsection{Installation Procedure}
+All of the standard Ubuntu install options will work, except the \textbf{Installation Type} screen. The \textit{Install alongside Windows} option is often unavailable, so the \textit{Erase everything and install Ubuntu} option is the straightforward choice here. After the Install procedure finishes, a reboot is required. A successful reboot leading to the Login splash screen and then the desktop is an indicator of a successful Ubuntu Install.
+
+\subsection{Installation problems}
+
+\begin{itemize}
+	\item Corrupted Installation media. Check the SHA256 key and verify the integrity of the ISO file after downloading. Then retry creation of bootable USB. Else, switch to a different release or a different distribution.
+	\item Windows installed on top of existing Linux. This is the incorrect order of OS installation for dual booting. Refer to GRUB Recovery help to regain the normal OS selection screen upon booting.
+\end{itemize}
+
+\subsection{Picking Username and Password}
+The Ubuntu Username and the institute email Username can (and should) be different. Also keep the Ubuntu password distinct from the Institute EMail password.
+
+\newpage
+
+\section{Software}
+\subsection{Preparation - Synaptic and Ubuntu Software Center}
+
+Use the Ubuntu Software Center to install Synaptic Package Manager. The Ubuntu Software Center comes bundled with the default Ubuntu ISO. On newer distributions, this also includes Snap support. \\
+
+\url{https://snapcraft.io/store}\\
+
+Almost all packages not available through the Software Center are easily found within Synaptic or installed using \texttt{apt-get} in the terminal, which is bundled with the default Ubuntu ISO.
+
+\subsection{Gnome Tweak Tool}
+Install using the Software Center to enable detailed customization of:
+
+
+\begin{itemize}
+	\item Gnome Desktop environment 
+	\item Input methods (keyboard shortcuts) 
+	\item Dock behavior and placement
+	\item Touchpad gestures and mouse emulation
+	\item Top Status bar
+	\item System-wide fonts (use synaptic to install new fonts) 
+	\item Power management and Hibernation
+\end{itemize}
+
+\subsection{Music}
+
+Audio editing is not a part of my requirements, and is not mentioned here.
+Music apps installed using Software Center:
+
+\begin{itemize}
+	\item Rhythmbox pre-packaged
+	\item Spotify through Software Center (Snap app).
+\end{itemize}
+
+\subsection{Terminal Customization}
+
+Default GNOME Termial pre-packaged.
+
+\begin{itemize}
+	\item Terminal comes with some themes and text color schemes bundled. Further customization available through Synaptic.
+	\item Drop down Quake-style terminals like Yakuake, Guake.
+	\item Terminal transparency slider built into Preferences menu.
+\end{itemize}
+
+\subsection{Text Editor and IDE}
+The following are available through the Software Center.
+
+\begin{itemize}
+	\item Gedit default text editor
+	\item Sublime Text is a text editor. One time per-user license fee. No limit on number of installs. Indefinite evaluation period. Extensible with Python and C/C++ plugins. A Python interpreter within Sublime Text is also available through \texttt{SublimeREPL}. 
+	\item Jetbrains Pycharm is a Python IDE.
+	\item Jetbrains CLion is a C/C++ IDE with free (annually renewed) subscription to the Professional edition for students (institutional email required).
+\end{itemize}
+
+\subsection{MATLAB}
+
+Mathematica is heresy.\\
+
+Matlab on the Software Center is simply a tool to create a desktop and launcher icon for an existing Matlab installation. It is not the actual Matlab installer.
+For Princeton University, detailed installation instructions for Matlab on Linux are available online. A free Mathworks account is required. Keep Mathworks login and password on hand when installing Matlab. The subscription is free for students and renews annually.\\
+
+The MATLAB License verification procedure is also streamlined now and only requires the Mathworks login details as above. Where \texttt{sudo} is required is clearly specified in the instructions. Failure to use \texttt{sudo} leads to problems with the license verification process. When License verification asks for Linux Username, the actual username should be used and not \texttt{root}.\\
+
+\url{https://princeton.service-now.com/snap?sys_id=KB0011359&id=kb_article}\\
+
+
+
 \end{document}
