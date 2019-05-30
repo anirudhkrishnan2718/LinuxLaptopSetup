@@ -1,10 +1,11 @@
-\documentclass[10pt,letterpaper]{article}
+\documentclass[12pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
+
 
 \title{Setting up a fresh Linux Install on a Laptop}
 \author{Anirudh Krishnan}
@@ -34,9 +35,7 @@ The simpler option is to solo-install Linux, which is what this document covers.
 
 \subsection{Downloading the Linux Image}
 
-Princeton Mathematics is the best mirror in the official list. Download either the long-term support version (released once every 4 years) or the latest stable release (releaed every 6 months). Look for the file resembling \\ 
-
-\texttt{ubuntu-YY.MM-desktop-amd64.iso} \\
+Princeton Mathematics is the best mirror in the official list. Download either the long-term support version (released once every 4 years) or the latest stable release (releaed every 6 months). Look for the file resembling \texttt{ubuntu-YY.MM-desktop-amd64.iso} \\
 
 The ISO file, a USB stick and an existing Windows or Linux machine are required to start creating the Bootble media.
 
@@ -67,13 +66,13 @@ The Ubuntu Username and the institute email Username can (and should) be differe
 \newpage
 
 \section{Software}
-\subsection{Preparation - Synaptic and Ubuntu Software Center}
+\subsection{Preparation - Software Management}
 
 Use the Ubuntu Software Center to install Synaptic Package Manager. The Ubuntu Software Center comes bundled with the default Ubuntu ISO. On newer distributions, this also includes Snap support. \\
 
 \url{https://snapcraft.io/store}\\
 
-Almost all packages not available through the Software Center are easily found within Synaptic or installed using \texttt{apt-get} in the terminal, which is bundled with the default Ubuntu ISO.
+Almost all packages not available through the Software Center are easily found within Synaptic or installed using \texttt{apt-get} in the terminal, which is bundled with the default Ubuntu ISO. Synaptic is also capable of installing a \texttt{.deb} standalone file.
 
 \subsection{Gnome Tweak Tool}
 Install using the Software Center to enable detailed customization of:
@@ -130,6 +129,106 @@ The MATLAB License verification procedure is also streamlined now and only requi
 
 \url{https://princeton.service-now.com/snap?sys_id=KB0011359&id=kb_article}\\
 
+The end result should be a MATLAB installation that can be called using \texttt{matlab} from the command line as well as through the app list \texttt{Super + A}. It should also be possible to pin the MATLAB shortcut to the dock.
+
+\subsection{Typesetting}
+
+Between texLive and MikTex distributions for the Latex base files, only texLive is available on the Synaptic package list. On Windows however, MikTex is the better option because of the attached MikTex package manager which helps download and update individual components of the latex base files.
+
+\begin{itemize}
+	\item Install \texttt{texlive-full} from Synaptic or fall back to \texttt{texlive-base} when constrained by low disk space or bad internet.
+	\item Texstudio is a latex focused IDE that requires no extra configuration after install and has very good auto-complete tooltips.
+	\item Evince is the built-in PDF viewer to which Texstudio can be asked to output after compiling a \texttt{.tex} file. 
+	\item Okular is a full featured PDF viewer (highlighting and annotations) that requires a KDE environment (extra headache unless on Kubuntu).
+\end{itemize} 
+
+
+\subsection{Bibliography Management}
+
+Zotero and Mendeley are the only convenient options in terms of browser plugins to import new items easily. Both are unavailable in the Software Center and need to be downloaded from their websites.
+
+\begin{itemize}
+	\item Mendeley is proprietary, has a 2GB online storage limit, has a linux standalone client and a built-in PDF viewer.
+	\item Zotero is open source, has a 300MB storage limit, also has a standalone client and is better at incorporating non-PDF sources.
+\end{itemize}
+
+
+\subsection{Version Control}
+
+GitHub for the online storage of local git repositories is the easiest to set up.
+
+\begin{itemize}
+	\item Create a free account at \url{www.github.com}. They offer a free text-editor called ATOM for student accounts. Github requires a subscription to allow more than 3 collaborators and to enable private repositories. There is a 1GB limit on total space used and a 100MB limit on individual file sizes.
+	\item Install \texttt{git} and the \texttt{git-hub} packages for command line access to github.com. There is no stand-alone linux client as of right now (There is a very nice Windows client though).
+\end{itemize}
+
+\subsection{Programming Languages}
+Python, the Anaconda package which contains numpy,scipy,matplotlib, and C/C++ are the only languages covered here.
+
+\begin{itemize}
+	\item Python3 is pre-packaged along with the C/C++ language and compiler (gcc). IDEs for these languages covered above. Linux needs very minimal setup to start coding in these 2 languages. Python3 comes with a built-in barebones code editor called IDLE. 
+	\item Install Anaconda from their website \\ \url{https://www.anaconda.com/distribution/}. 
+	\item \texttt{conda list} to check if every component is installed
+	\item \texttt{conda update conda} followed by \texttt{conda update anaconda} to update the entire suite.
+	\item \texttt{anaconda-navigator} to open the centralised Anaconda Navigator to access the Spyder IDE, Jupyter notebooks and other components. There is no easy way to get an app shortcut for the Navigator onto the dock or the desktop.
+\end{itemize}
+
+\subsection{Media Player}
+
+VLC is the one stop solution to all audio and video media with the correct codecs downloaded.
+
+\begin{itemize}
+	\item the package \texttt{ubuntu-restricted-extras} for most of the common codecs.
+	\item VLC from the Software Center
+\end{itemize}
+
+\subsection{Web Browser}
+
+\begin{itemize}
+	\item Firefox comes pre-packaged. Substitues for Google Chrome very well.
+	\item Google Chrome Linux installer is only available from their website. Software Center only lists the underlying open source Chromium browser.
+	\item Command line web browser package \texttt{lynx}. Useful when GUI access is unavailable.
+	
+\end{itemize}
+
+\subsection{Remote Access}
+
+\begin{itemize}
+	\item Remmina is the remote desktop client pre-packaged with Ubuntu.
+	\item install the \texttt{ssh} meta-package to connect to remote servers using the SSH protocol.
+	\item Xterm and UXterm are prepackaged with Ubuntu.
+	\item install the \texttt{samba, smbclient} and \texttt{cifs-utils} packages from Synaptic to access the University Fileserver (H: Drive). Instructions at Princeton Knowledge Base KB0010622.
+	\item Departmental file-server mounting instructions available from the department. (require same packages as H: drive above)
+	 
+\end{itemize}
+
+\subsection{Peripherals}
+
+\begin{itemize}
+	\item Wireless Mouse and Keyboard supported out of the box.
+	\item Printer access does not require any new software. Only the printer URL is needed.
+	\item Laptop Webcam works out of the box (\texttt{Cheese} software prepackaged with Ubuntu ISO)
+	\item External Monitors are supported via HDMI cables. Maximum resolution is limited when using HDMI. This issue may depend on Laptop HDMI Port Specification and External Monitor Model.
+	\item Laptop Fingerprint Reader does not work. Manufacturer has no Linux drivers in development.
+	\item Wi-Fi works out of the box. No additional software needed.
+	\item Ethernet may require host-registration by the department to work. No software to be downloaded.
+\end{itemize}
+
+\newpage
+
+\section{Ongoing Issues}
+
+\subsection{Login Loop}
+
+Entering the correct password on the login splash screen causes a blank screen and a loop back to the same splash screen.\\
+
+Solved by switching to Wayland window manager instead of X11 on the login screen.
+
+\subsection{Battery Life}
+
+It is unknown how the battery life on Ubuntu compares to Windows on the same Laptop model. This depends on Linux Kernel version.
+
+\subsection{External Monitors}
 
 
 \end{document}
