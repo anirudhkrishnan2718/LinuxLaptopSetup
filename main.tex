@@ -1,15 +1,17 @@
-\documentclass[12pt,letterpaper]{article}
+\documentclass[10pt,letterpaper,twocolumn]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage[margin=0.75in]{geometry}
 
 
 \title{Setting up a fresh Linux Install on a Laptop}
 \author{Anirudh Krishnan}
 \date{\today}
+\setlength{\columnsep}{0.25in}
 
 \begin{document}
 \maketitle
@@ -74,12 +76,12 @@ Use the Ubuntu Software Center to install Synaptic Package Manager. The Ubuntu S
 
 Almost all packages not available through the Software Center are easily found within Synaptic or installed using \texttt{apt-get} in the terminal, which is bundled with the default Ubuntu ISO. Synaptic is also capable of installing a \texttt{.deb} standalone file.
 
-\subsection{Gnome Tweak Tool}
-Install using the Software Center to enable detailed customization of:
+\subsection{Desktop Customization}
+Install \texttt{gnome-tweaks} or \texttt{unity-tweak-tool} (depending on desktop environment) using Synaptic to enable detailed customization of:
 
 
 \begin{itemize}
-	\item Gnome Desktop environment 
+	\item Desktop workspaces 
 	\item Input methods (keyboard shortcuts) 
 	\item Dock behavior and placement
 	\item Touchpad gestures and mouse emulation
@@ -145,7 +147,7 @@ Between texLive and MikTex distributions for the Latex base files, only texLive 
 
 \subsection{Bibliography Management}
 
-Zotero and Mendeley are the only convenient options in terms of browser plugins to import new items easily. Both are unavailable in the Software Center and need to be downloaded from their websites.
+Zotero and Mendeley are the only convenient options in terms of browser plugins to import new items easily. Both are unavailable in the Software Center and need to be downloaded from their websites. University Library provides support for these two solutions as well as Endnote and 
 
 \begin{itemize}
 	\item Mendeley is proprietary, has a 2GB online storage limit, has a linux standalone client and a built-in PDF viewer.
@@ -222,13 +224,17 @@ The prepackaged LibreOffice suite is a good enough substitute. For collaborative
 
 \newpage
 
-\section{Ongoing Issues}
+\section{Common Issues with Linux}
+
+Issues are specific to a Dell XPS 15 9570 (newest model as of January 2019). Dell XPS 15 and Dell XPS 13 are the most popular Windows Laptop models purchased within the University so these issues should be fairly common. \\
+
+Issues are observed and solutions tested on Ubuntu Linux (19.04), but are expected to pop up on other Linux distributions as well.
 
 \subsection{Login Loop}
 
-Entering the correct password on the login splash screen causes a blank screen and a loop back to the same splash screen.\\
+Entering the correct password on the login splash screen causes a blank screen and a loop back to the same login screen.\\
 
-Solved by switching to Wayland window manager instead of X11 on the login screen.
+Solved by switching to Wayland window manager instead of X11 on the login screen. Many proposed solutions online and mane possible underlying causes of the issue. 
 
 \subsection{Battery Life}
 
@@ -236,7 +242,16 @@ It is unknown how the battery life on Ubuntu compares to Windows on the same Lap
 
 \subsection{External Monitors}
 
-HDMI Cable is not able to support high resolution external monitors. May require a DisplayPort cable. HDMI is sufficient on Windows however.
+HDMI Cable is not able to support high resolution external monitors. May require a DisplayPort cable. HDMI is sufficient on Windows however. This was determined to not be a driver or software issue on Linux. The HDMI display cable is the limiting hardware.\\
 
+Switching to a USB-C Gen 2 (aka Thunderbolt 3) to DisplayPort cable for the monitor supports 1440p@60Hz as tested. This cable can support up to 4K@60Hz according to the product description. Avoiding HDMI cables to begin with and using a USB-C Dock or a DisplayPort display cable is recommended.
+
+\subsection{Bad Desktop Graphics Performance}
+
+The default Gnome3 Desktop and the gdm3 window manager are very choppy when it comes to desktop graphics (resizing, dragging, minimizing windows). The animation smoothness does not match the monitor's high refresh rate. \\
+
+Install \texttt{ubuntu-unity-desktop} and switch to Unity desktop on the login splash screen. When prompted, switch to \texttt{lightdm} from \texttt{gdm3} to recover the old Unity login splash screen. Desktop graphics and animations are far smoother in Unity. Unity was the default desktop before Ubuntu 17.10 when it switched to GNOME. Unity desktop also has a far better window tiling manager. Install \texttt{unity-tweak-tool} for finer control over the Unity desktop.\\
+
+This issue persists when switching to Nvidia discrete graphics from the integrated Intel graphics. A smoother desktop graphics experience might be possible with a different desktop environment such as KDE or XFCE.
 
 \end{document}
