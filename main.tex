@@ -1,13 +1,13 @@
 \documentclass[8pt,letterpaper,twocolumn]{article}
-\usepackage{lmss}
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[margin=0.75in]{geometry}
 
+% use the sans-serif font in the chosen font family as the default for
+% the entire document
+\renewcommand{\familydefault}{\sfdefault}
 
 \title{Setting up a fresh Linux Install on a Laptop}
 \author{Anirudh Krishnan}
@@ -23,29 +23,27 @@
 
 \section{Pre Installation}
 
-Pick a distribution. Ubuntu Used here due to extensive online help and debian being a user friendly package installer. Second preference for Linux Mint. \\
-
-Pre-install involves deciding whether to Dual Boot with Windows or to Single boot Linux. Dual Booting with Windows requires Windows to be installed first because it does not have a Boot Manager to manage Linux alongside it. \\
-
-Laptops may require these BIOS level settings changes for Dual Boot:
-
-\begin{itemize}
-	\item SecureBoot turned off (new laptops)
-	\item Raid Mode turned off (manufacturer might have set Raid-0 mode On)
-\end{itemize}
+Pick a distribution. Linux Mint used here due to ubuntu forcing snap packages.
+Dual booting alongside Windows requires Windows to be installed first to avoid
+issues with the GRUB and losing the ability to boot.\\
 
 The simpler option is to solo-install Linux, which is what this document covers.
 
 \subsection{Downloading the Linux Image}
 
-Princeton Mathematics is the best mirror in the official list. Download either the long-term support version (released once every 4 years) or the latest stable release (released every 6 months). Look for the file resembling \texttt{ubuntu-YY.MM-desktop-amd64.iso} \\
+Princeton Mathematics is the best mirror in the official list. Download either the long-term support version 
+(released once every 4 years) or the latest stable release (released every 6 months). 
+Look for the file resembling \texttt{linuxmint-YY.MM-desktop-amd64.iso} \\
 
 The ISO file, a USB stick and an existing Windows or Linux machine are required to start creating the Bootble media.
 
 
 
 \subsection{Bootable Media}
-Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.), Etcher by Balena is a cross platform neatly packaged app that makes bootable USBs. Download the app (AppImage format for Linux so it works across distros) and follow instructions to create a bootable USB. USB stick of size at least 4 GB required.\\
+Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.), 
+Etcher by Balena is a cross platform neatly packaged app that makes bootable USBs. 
+Download the app (AppImage format for Linux so it works across distros) and follow instructions to create a bootable USB. 
+USB stick of size at least 4 GB required.\\
 
 \url{https://www.balena.io/etcher/} \\
 
@@ -54,42 +52,34 @@ Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.), Etcher by
 \section{Installation}
 
 \subsection{Installation Procedure}
-All of the standard Ubuntu install options will work, except the \textbf{Installation Type} screen. The \textit{Install alongside Windows} option is often unavailable, so the \textit{Erase everything and install Ubuntu} option is the straightforward choice here. After the Install procedure finishes, a reboot is required. A successful reboot leading to the Login splash screen and then the desktop is an indicator of a successful Ubuntu Install.
+All of the standard Ubuntu install options will work, except the \textbf{Installation Type} screen. 
+The \textit{Install alongside Windows} option is often unavailable, so the \textit{Erase everything and install Ubuntu} 
+option is the straightforward choice here. 
+After the Install procedure finishes, a reboot is required. 
+A successful reboot leading to the Login splash screen and then the desktop is an indicator of a successful Ubuntu Install.
 
 \subsection{Installation problems}
 
 \begin{itemize}
-	\item Corrupted Installation media. Check the SHA256 key and verify the integrity of the ISO file after downloading. Then retry creation of bootable USB. Else, switch to a different release or a different distribution.
-	\item Windows installed on top of existing Linux. This is the incorrect order of OS installation for dual booting. Refer to GRUB Recovery help to regain the normal OS selection screen upon booting.
+	\item Corrupted Installation media. Check the SHA256 key and verify the integrity of the ISO file after downloading. 
+	Then retry creation of bootable USB. Else, switch to a different release or a different distribution.
+	\item Windows installed on top of existing Linux. 
+	This is the incorrect order of OS installation for dual booting. 
+	Refer to GRUB Recovery help to regain the normal OS selection screen upon booting.
 \end{itemize}
 
 \subsection{Picking Username and Password}
-The Ubuntu Username and the institute email Username can (and should) be different. Also keep the Ubuntu password distinct from the Institute EMail password.
+The Ubuntu Username and the institute email Username can (and should) be different. 
+Also keep the Ubuntu password distinct from the Institute Email password.
 
 \newpage
 
 \section{Software}
 \subsection{Preparation - Software Management}
 
-Use the Ubuntu Software Center to install Synaptic Package Manager. The Ubuntu Software Center comes bundled with the default Ubuntu ISO. On newer distributions, this also includes Snap support. \\
-
-\url{https://snapcraft.io/store}\\
-
-Almost all packages not available through the Software Center are easily found within Synaptic or installed using \texttt{apt-get} in the terminal, which is bundled with the default Ubuntu ISO. Synaptic is also capable of installing a \texttt{.deb} standalone file.
-
-\subsection{Desktop Customization}
-Install \texttt{gnome-tweaks} or \texttt{unity-tweak-tool} (depending on desktop environment) using Synaptic to enable detailed customization of:
-
-
-\begin{itemize}
-	\item Desktop workspaces 
-	\item Input methods (keyboard shortcuts) 
-	\item Dock behavior and placement
-	\item Touchpad gestures and mouse emulation
-	\item Top Status bar
-	\item System-wide fonts (use synaptic to install new fonts) 
-	\item Power management and Hibernation
-\end{itemize}
+Synaptic Package Manager comes pre-installed for finer control of package instllation. 
+The Software Center comes bundled with the default Linux Mint ISO. 
+On newer distributions, this includes flatpak support in addition to the standard ubuntu repositories. \\
 
 \subsection{Music}
 
@@ -115,24 +105,27 @@ Default GNOME Terminal prepackaged.
 The following are available through the Software Center.
 
 \begin{itemize}
-	\item Gedit default text editor
+	\item Install VSCode for linux using the downloadable \texttt{.deb} file and login using Github integration
+	\item Xed is the Linux default text editor
 	\item Sublime Text is a text editor. One time per-user license fee. No limit on number of installs. Indefinite evaluation period. Extensible with Python and C/C++ plugins. A Python interpreter within Sublime Text is also available through \texttt{SublimeREPL}. 
 	\item Jetbrains Pycharm is a Python IDE.
 	\item Jetbrains CLion is a C/C++ IDE with free (annually renewed) subscription to the Professional edition for students (institutional email required).
 \end{itemize}
 
-\subsection{MATLAB}
+\subsection{Anaconda}
 
-Mathematica is heresy.\\
+Mathematica is heresy. So is MATLAB\\
 
-Matlab on the Software Center is simply a tool to create a desktop and launcher icon for an existing Matlab installation. It is not the actual Matlab installer.
-For Princeton University, detailed installation instructions for Matlab on Linux are available online. A free Mathworks account is required. Keep Mathworks login and password on hand when installing Matlab. The subscription is free for students and renews annually.\\
+Install \texttt{miniconda} instead of the full \texttt{anaconda} distribution. 
+This helps avoid dependency issues when installing \texttt{mamba}, the better alternative to the 
+\texttt{conda} package manager.
 
-The MATLAB License verification procedure is also streamlined now and only requires the Mathworks login details as above. Where \texttt{sudo} is required is clearly specified in the instructions. Failure to use \texttt{sudo} leads to problems with the license verification process. When License verification asks for Linux Username, the actual username should be used and not \texttt{root}.\\
+Since \texttt{mamba} is a drop-in replacement for \texttt{conda}, the commands to create environemnts, search for 
+packages and install them is identical. Install anaconda packages as necessary using the \texttt{mamba} package manager.
 
-\url{https://princeton.service-now.com/snap?sys_id=KB0011359&id=kb_article}\\
 
-The end result should be a MATLAB installation that can be called using \texttt{matlab} from the command line as well as through the app list \texttt{Super + A}. It should also be possible to pin the MATLAB shortcut to the dock.
+
+
 
 \subsection{Typesetting}
 
@@ -153,6 +146,8 @@ Zotero and Mendeley are the only convenient options in terms of browser plugins 
 \begin{itemize}
 	\item Mendeley is proprietary, has a 2GB online storage limit, has a linux standalone client and a built-in PDF viewer.
 	\item Zotero is open source, has a 300MB storage limit, also has a standalone client and is better at incorporating non-PDF sources.
+	\item ZOtero additionally has a built-in PDF reader, note-taker and annotator which works cross-platform.
+	\item With an institutional email account linked, Zotero provides unlimited storage
 \end{itemize}
 
 
@@ -161,19 +156,8 @@ Zotero and Mendeley are the only convenient options in terms of browser plugins 
 GitHub for the online storage of local git repositories is the easiest to set up.
 
 \begin{itemize}
-	\item Create a free account at \url{www.github.com}. They offer a free text-editor called ATOM for student accounts. Github requires a subscription to allow more than 3 collaborators and to enable private repositories. There is a 1GB limit on total space used and a 100MB limit on individual file sizes.
+	\item Github desktop is available as a downloadable package for Linux. This provides a GUI interface for \texttt{git} commands.
 	\item Install \texttt{git} and the \texttt{git-hub} packages for command line access to github.com. There is no stand-alone linux client as of right now (There is a very nice Windows client though).
-\end{itemize}
-
-\subsection{Programming Languages}
-Python, the Anaconda package which contains numpy,scipy,matplotlib, and C/C++ are the only languages covered here.
-
-\begin{itemize}
-	\item Python3 is prepackaged along with the C/C++ language and compiler (gcc). IDEs for these languages covered above. Linux needs very minimal setup to start coding in these 2 languages. Python3 comes with a built-in bare-bones code editor called IDLE. 
-	\item Install Anaconda from their website \\ \url{https://www.anaconda.com/distribution/}. 
-	\item \texttt{conda list} to check if every component is installed
-	\item \texttt{conda update conda} followed by \texttt{conda update anaconda} to update the entire suite.
-	\item \texttt{anaconda-navigator} to open the centralized Anaconda Navigator to access the Spyder IDE, Jupyter notebooks and other components. There is no easy way to get an app shortcut for the Navigator onto the dock or the desktop.
 \end{itemize}
 
 \subsection{Media Player}
@@ -194,6 +178,9 @@ VLC is the one stop solution to all audio and video media with the correct codec
 	
 \end{itemize}
 
+\subsection{Wallpaper rotation}
+
+Install \texttt{variety} and choose a wallpaper source from a downloaded image folder or an online source.
 \subsection{Office Suite}
 
 The Microsoft Office 365 browser-based software does work. A free MS Office 365 account is available to students with an institutional ID. No standalone Linux client for MS Office currently available. \\
@@ -223,7 +210,13 @@ The prepackaged LibreOffice suite is a good enough substitute. For collaborative
 	\item Ethernet may require host-registration by the department to work. No software to be downloaded.
 \end{itemize}
 
-\newpage
+\subsection{Firmware and BIOS updates}
+
+\begin{itemize}
+	\item Install \texttt{fwupd} for laptops supported by the BIOS package management system.
+	\item For supported laptop models, \texttt{fwupdmgr} enables the downloading and updating of BIOS from within the OS
+	\item Updating the BIOS requires an A/C power cionnection when restarting to flash BIOS.
+\end{itemize}
 
 \section{Common Issues with Linux}
 
@@ -246,13 +239,5 @@ It is unknown how the battery life on Ubuntu compares to Windows on the same Lap
 HDMI Cable is not able to support high resolution external monitors. May require a DisplayPort cable. HDMI is sufficient on Windows however. This was determined to not be a driver or software issue on Linux. The HDMI display cable is the limiting hardware.\\
 
 Switching to a USB-C Gen 2 (aka Thunderbolt 3) to DisplayPort cable for the monitor supports 1440p@60Hz as tested. This cable can support up to 4K@60Hz according to the product description. Avoiding HDMI cables to begin with and using a USB-C Dock or a DisplayPort display cable is recommended.
-
-\subsection{Bad Desktop Graphics Performance}
-
-The default Gnome3 Desktop and the gdm3 window manager are very choppy when it comes to desktop graphics (resizing, dragging, minimizing windows). The animation smoothness does not match the monitor's high refresh rate. \\
-
-Install \texttt{ubuntu-unity-desktop} and switch to Unity desktop on the login splash screen. When prompted, switch to \texttt{lightdm} from \texttt{gdm3} to recover the old Unity login splash screen. Desktop graphics and animations are far smoother in Unity. Unity was the default desktop before Ubuntu 17.10 when it switched to GNOME. Unity desktop also has a far better window tiling manager. Install \texttt{unity-tweak-tool} for finer control over the Unity desktop.\\
-
-This issue persists when switching to Nvidia discrete graphics from the integrated Intel graphics. A smoother desktop graphics experience might be possible with a different desktop environment such as KDE or XFCE.
 
 \end{document}
