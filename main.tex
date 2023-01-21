@@ -23,53 +23,53 @@
 
 \section{Pre Installation}
 
-Pick a distribution. Linux Mint used here due to ubuntu forcing snap packages.
+Pick a distribution. Linux Mint used here due to Ubuntu forcing snap packages.
 Dual booting alongside Windows requires Windows to be installed first to avoid
-issues with the GRUB and losing the ability to boot.\\
+issues with the GRUB and losing the ability to boot.
 
 The simpler option is to solo-install Linux, which is what this document covers.
 
 \subsection{Downloading the Linux Image}
 
-Princeton Mathematics is the best mirror in the official list. Download either the long-term support version 
-(released once every 4 years) or the latest stable release (released every 6 months). 
-Look for the file resembling \texttt{linuxmint-YY.MM-desktop-amd64.iso} \\
+Princeton Mathematics is the best mirror in the official list. Download either the long-term support version
+(released once every 4 years) or the latest stable release (released every 6 months).
+Look for the file resembling \texttt{linuxmint-YY.MM-desktop-amd64.iso}
 
 The ISO file, a USB stick and an existing Windows or Linux machine are required to start creating the Bootble media.
 
 
 
 \subsection{Bootable Media}
-Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.), 
-Etcher by Balena is a cross platform neatly packaged app that makes bootable USBs. 
-Download the app (AppImage format for Linux so it works across distros) and follow instructions to create a bootable USB. 
-USB stick of size at least 4 GB required.\\
+Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.),
+Etcher by Balena is a cross platform neatly packaged app that makes bootable USBs.
+Download the app (AppImage format for Linux so it works across distros) and follow instructions to create a bootable USB.
+USB stick of size at least 4 GB required.
 
-\url{https://www.balena.io/etcher/} \\
+\url{https://www.balena.io/etcher/}
 
 \newpage
 
 \section{Installation}
 
 \subsection{Installation Procedure}
-All of the standard Ubuntu install options will work, except the \textbf{Installation Type} screen. 
-The \textit{Install alongside Windows} option is often unavailable, so the \textit{Erase everything and install Ubuntu} 
-option is the straightforward choice here. 
-After the Install procedure finishes, a reboot is required. 
+All of the standard Ubuntu install options will work, except the \textbf{Installation Type} screen.
+The \textit{Install alongside Windows} option is often unavailable, so the \textit{Erase everything and install Ubuntu}
+option is the straightforward choice here.
+After the Install procedure finishes, a reboot is required.
 A successful reboot leading to the Login splash screen and then the desktop is an indicator of a successful Ubuntu Install.
 
 \subsection{Installation problems}
 
 \begin{itemize}
-	\item Corrupted Installation media. Check the SHA256 key and verify the integrity of the ISO file after downloading. 
+	\item Corrupted Installation media. Check the SHA256 key and verify the integrity of the ISO file after downloading.
 	Then retry creation of bootable USB. Else, switch to a different release or a different distribution.
-	\item Windows installed on top of existing Linux. 
-	This is the incorrect order of OS installation for dual booting. 
+	\item Windows installed on top of existing Linux.
+	This is the incorrect order of OS installation for dual booting.
 	Refer to GRUB Recovery help to regain the normal OS selection screen upon booting.
 \end{itemize}
 
 \subsection{Picking Username and Password}
-The Ubuntu Username and the institute email Username can (and should) be different. 
+The Ubuntu Username and the institute email Username can (and should) be different.
 Also keep the Ubuntu password distinct from the Institute Email password.
 
 \newpage
@@ -77,9 +77,9 @@ Also keep the Ubuntu password distinct from the Institute Email password.
 \section{Software}
 \subsection{Preparation - Software Management}
 
-Synaptic Package Manager comes pre-installed for finer control of package instllation. 
-The Software Center comes bundled with the default Linux Mint ISO. 
-On newer distributions, this includes flatpak support in addition to the standard ubuntu repositories. \\
+Synaptic Package Manager comes pre-installed for finer control of package installation.
+The Software Center comes bundled with the default Linux Mint ISO.
+On newer distributions, this includes flatpak support in addition to the standard Ubuntu repositories.
 
 \subsection{Music}
 
@@ -105,22 +105,22 @@ Default GNOME Terminal prepackaged.
 The following are available through the Software Center.
 
 \begin{itemize}
-	\item Install VSCode for linux using the downloadable \texttt{.deb} file and login using Github integration
+	\item Install VSCode for Linux using the downloadable \texttt{.deb} file and login using GitHub integration
 	\item Xed is the Linux default text editor
-	\item Sublime Text is a text editor. One time per-user license fee. No limit on number of installs. Indefinite evaluation period. Extensible with Python and C/C++ plugins. A Python interpreter within Sublime Text is also available through \texttt{SublimeREPL}. 
+	\item Sublime Text is a text editor. One time per-user license fee. No limit on number of installs. Indefinite evaluation period. Extensible with Python and C/C++ plugins. A Python interpreter within Sublime Text is also available through \texttt{SublimeREPL}.
 	\item Jetbrains Pycharm is a Python IDE.
 	\item Jetbrains CLion is a C/C++ IDE with free (annually renewed) subscription to the Professional edition for students (institutional email required).
 \end{itemize}
 
 \subsection{Anaconda}
 
-Mathematica is heresy. So is MATLAB\\
+Mathematica is heresy. So is MATLAB.
 
-Install \texttt{miniconda} instead of the full \texttt{anaconda} distribution. 
-This helps avoid dependency issues when installing \texttt{mamba}, the better alternative to the 
+Install \texttt{miniconda} instead of the full \texttt{anaconda} distribution.
+This helps avoid dependency issues when installing \texttt{mamba}, the better alternative to the
 \texttt{conda} package manager.
 
-Since \texttt{mamba} is a drop-in replacement for \texttt{conda}, the commands to create environemnts, search for 
+Since \texttt{mamba} is a drop-in replacement for \texttt{Conda}, the commands to create environments, search for
 packages and install them is identical. Install anaconda packages as necessary using the \texttt{mamba} package manager.
 
 
@@ -133,21 +133,21 @@ Between texLive and MikTex distributions for the Latex base files, only texLive 
 
 \begin{itemize}
 	\item Install \texttt{texlive-full} from Synaptic or fall back to \texttt{texlive-base} when constrained by low disk space or bad internet.
-	\item Texstudio is a latex focused IDE that requires no extra configuration after install and has very good auto-complete tooltips.
-	\item Evince is the built-in PDF viewer to which Texstudio can be asked to output after compiling a \texttt{.tex} file. 
-	\item Okular is a full featured PDF viewer (highlighting and annotations) that requires a KDE environment (extra headache unless on Kubuntu).
-\end{itemize} 
+	\item TeXstudio is a latex focused IDE that requires no extra configuration after install and has very good auto-complete tooltips.
+	\item Evince is the built-in PDF viewer to which TeXstudio can be asked to output after compiling a \texttt{.tex} file.
+	\item Okular is a full-featured PDF viewer (highlighting and annotations) that requires a KDE environment (extra headache unless on Kubuntu).
+\end{itemize}
 
 
 \subsection{Bibliography Management}
 
-Zotero and Mendeley are the only convenient options in terms of browser plugins to import new items easily. Both are unavailable in the Software Center and need to be downloaded from their websites. University Library provides support for these two solutions as well as Endnote and 
+Zotero and Mendeley are the only convenient options in terms of browser plugins to import new items easily. Both are unavailable in the Software Center and need to be downloaded from their websites. University Library provides support for these two solutions as well as Endnote and
 
 \begin{itemize}
 	\item Mendeley is proprietary, has a 2GB online storage limit, has a linux standalone client and a built-in PDF viewer.
 	\item Zotero is open source, has a 300MB storage limit, also has a standalone client and is better at incorporating non-PDF sources.
 	\item ZOtero additionally has a built-in PDF reader, note-taker and annotator which works cross-platform.
-	\item With an institutional email account linked, Zotero provides unlimited storage
+	\item With an institutional email account linked, Zotero provides unlimited storage.
 \end{itemize}
 
 
@@ -175,7 +175,7 @@ VLC is the one stop solution to all audio and video media with the correct codec
 	\item Firefox comes pre-packaged. Substitutes for Google Chrome very well.
 	\item Google Chrome Linux installer is only available from their website. Software Center only lists the underlying open source Chromium browser.
 	\item Command line web browser package \texttt{lynx}. Useful when GUI access is unavailable.
-	
+
 \end{itemize}
 
 \subsection{Wallpaper rotation}
@@ -183,7 +183,7 @@ VLC is the one stop solution to all audio and video media with the correct codec
 Install \texttt{variety} and choose a wallpaper source from a downloaded image folder or an online source.
 \subsection{Office Suite}
 
-The Microsoft Office 365 browser-based software does work. A free MS Office 365 account is available to students with an institutional ID. No standalone Linux client for MS Office currently available. \\
+The Microsoft Office 365 browser-based software does work. A free MS Office 365 account is available to students with an institutional ID. No standalone Linux client for MS Office currently available.
 
 The prepackaged LibreOffice suite is a good enough substitute. For collaborative work or online sharing, Google Docs or Office 365 Shared Docs can work, especially if the other collaborators are running Windows.
 
@@ -195,7 +195,7 @@ The prepackaged LibreOffice suite is a good enough substitute. For collaborative
 	\item Xterm and UXterm are prepackaged with Ubuntu.
 	\item install the \texttt{samba, smbclient} and \texttt{cifs-utils} packages from Synaptic to access the University Fileserver (H: Drive). Instructions at Princeton Knowledge Base KB0010622.
 	\item Departmental file-server mounting instructions available from the department. (require same packages as H: drive above)
-	 
+
 \end{itemize}
 
 \subsection{Peripherals}
@@ -220,15 +220,15 @@ The prepackaged LibreOffice suite is a good enough substitute. For collaborative
 
 \section{Common Issues with Linux}
 
-Issues are specific to a Dell XPS 15 9570 (newest model as of January 2019). Dell XPS 15 and Dell XPS 13 are the most popular Windows Laptop models purchased within the University so these issues should be fairly common. \\
+Issues are specific to a Dell XPS 15 9570 (newest model as of January 2019). Dell XPS 15 and Dell XPS 13 are the most popular Windows Laptop models purchased within the University so these issues should be fairly common.
 
 Issues are observed and solutions tested on Ubuntu Linux (19.04), but are expected to pop up on other Linux distributions as well.
 
 \subsection{Login Loop}
 
-Entering the correct password on the login splash screen causes a blank screen and a loop back to the same login screen.\\
+Entering the correct password on the login splash screen causes a blank screen and a loop back to the same login screen.
 
-Solved by switching to Wayland window manager instead of X11 on the login screen. Many proposed solutions online and mane possible underlying causes of the issue. 
+Solved by switching to Wayland window manager instead of X11 on the login screen. Many proposed solutions online and mane possible underlying causes of the issue.
 
 \subsection{Battery Life}
 
@@ -236,7 +236,7 @@ It is unknown how the battery life on Ubuntu compares to Windows on the same Lap
 
 \subsection{External Monitors}
 
-HDMI Cable is not able to support high resolution external monitors. May require a DisplayPort cable. HDMI is sufficient on Windows however. This was determined to not be a driver or software issue on Linux. The HDMI display cable is the limiting hardware.\\
+HDMI Cable is not able to support high resolution external monitors. May require a DisplayPort cable. HDMI is sufficient on Windows however. This was determined to not be a driver or software issue on Linux. The HDMI display cable is the limiting hardware.
 
 Switching to a USB-C Gen 2 (aka Thunderbolt 3) to DisplayPort cable for the monitor supports 1440p@60Hz as tested. This cable can support up to 4K@60Hz according to the product description. Avoiding HDMI cables to begin with and using a USB-C Dock or a DisplayPort display cable is recommended.
 
