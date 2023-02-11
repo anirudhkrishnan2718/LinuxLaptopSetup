@@ -1,13 +1,10 @@
-\documentclass[8pt,letterpaper,twocolumn]{article}
+\documentclass[8pt,a4paper]{article}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[margin=0.75in]{geometry}
+\usepackage[margin=1in]{geometry}
 
-% use the sans-serif font in the chosen font family as the default for
-% the entire document
-\renewcommand{\familydefault}{\sfdefault}
 
 \title{Setting up a fresh Linux Install on a Laptop}
 \author{Anirudh Krishnan}
@@ -23,31 +20,27 @@
 
 \section{Pre Installation}
 
-Pick a distribution. Linux Mint used here due to Ubuntu forcing snap packages.
-Dual booting alongside Windows requires Windows to be installed first to avoid
-issues with the GRUB and losing the ability to boot.
-
+Pick a distribution. Kubuntu (with the KDE suite of software) is the choice of
+distriubtion used here. Installing alongside Windows is easier if Windows is installed first.
 The simpler option is to solo-install Linux, which is what this document covers.
 
 \subsection{Downloading the Linux Image}
-
-Princeton Mathematics is the best mirror in the official list. Download either the long-term support version
-(released once every 4 years) or the latest stable release (released every 6 months).
+Choose the nearest mirror in the official list if the main download is too slow.
+Download either the long-term support version (released once every 4 years) or the 
+latest stable release (released every 6 months).
 Look for the file resembling \texttt{linuxmint-YY.MM-desktop-amd64.iso}
 
-The ISO file, a USB stick and an existing Windows or Linux machine are required to start creating the Bootble media.
+Prepare a USB stick with at least 8GB of free space to flash the ISO.
 
 
 
 \subsection{Bootable Media}
-Among the many alternatives, (Unetbootin, LinuxLive Usb Creator etc.),
-Etcher by Balena is a cross platform neatly packaged app that makes bootable USBs.
-Download the app (AppImage format for Linux so it works across distros) and follow instructions to create a bootable USB.
-USB stick of size at least 4 GB required.
+\href{https://www.ventoy.net/en/index.html}{Ventoy} uses a simple copy-paste mechanism to have 
+multiple operating system ISO files exisitng together on the same USB Drive. When selecting the 
+USB drive as the boot medium, a separate menu can be used to select the specific OS to install. 
 
-\url{https://www.balena.io/etcher/}
+This also supports Windows ISO files alongside Linux ISOs.
 
-\newpage
 
 \section{Installation}
 
@@ -77,9 +70,17 @@ Also keep the Ubuntu password distinct from the Institute Email password.
 \section{Software}
 \subsection{Preparation - Software Management}
 
-Synaptic Package Manager comes pre-installed for finer control of package installation.
-The Software Center comes bundled with the default Linux Mint ISO.
-On newer distributions, this includes flatpak support in addition to the standard Ubuntu repositories.
+Discover comes pre-installed with snap, flatpak as well as debian repository sources 
+for finer control of package installation.
+Synaptic Package Manager is the best ubuntu-repo management system without any intrusions from 
+flatpak, AppImage, and Snap repositories.
+
+\subsection{CLI Tools}
+
+\begin{itemize}
+	\item \texttt{exa} is a drop-in replacement for ls.
+	\item \texttt{Starship} is a terminal prompt customizer
+\end{itemize}
 
 \subsection{Music}
 
@@ -87,6 +88,7 @@ Audio editing is not a part of my requirements, and is not mentioned here.
 Music apps installed using Software Center:
 
 \begin{itemize}
+	\item VLC comes prepackaged with the enhanced Kubuntu ISO
 	\item Rhythmbox pre-packaged
 	\item Spotify through Software Center (Snap app).
 \end{itemize}
@@ -96,7 +98,7 @@ Music apps installed using Software Center:
 Default GNOME Terminal prepackaged.
 
 \begin{itemize}
-	\item Terminal comes with some themes and text color schemes bundled. Further customization available through Synaptic.
+	\item Konsole comes with some themes and text color schemes bundled. Further customization available through Synaptic.
 	\item Drop down Quake-style terminals like Yakuake, Guake.
 	\item Terminal transparency slider built into Preferences menu.
 \end{itemize}
@@ -105,23 +107,20 @@ Default GNOME Terminal prepackaged.
 The following are available through the Software Center.
 
 \begin{itemize}
-	\item Install VSCode for Linux using the downloadable \texttt{.deb} file and login using GitHub integration
-	\item Xed is the Linux default text editor
-	\item Sublime Text is a text editor. One time per-user license fee. No limit on number of installs. Indefinite evaluation period. Extensible with Python and C/C++ plugins. A Python interpreter within Sublime Text is also available through \texttt{SublimeREPL}.
-	\item Jetbrains Pycharm is a Python IDE.
-	\item Jetbrains CLion is a C/C++ IDE with free (annually renewed) subscription to the Professional edition for students (institutional email required).
+	\item Install \href{https://code.visualstudio.com/docs/setup/linux}{VSCode for Linux} using the downloadable \texttt{.deb} file and login using GitHub integration
+	\item VSCode has a Settings and Extensions Sync that requires logging into GitHub. This also enables repo management from within VSCode.
 \end{itemize}
 
 \subsection{Anaconda}
 
-Mathematica is heresy. So is MATLAB.
+\href{https://worldclown.com/}{Mathematica} and \href{https://www.mathworks.com/help/matlab/matlab_env/start-matlab-on-linux-platforms.html}{MATLAB} are not part of my workflow anymore and these sections have been trimmed.\\
 
-Install \texttt{miniconda} instead of the full \texttt{anaconda} distribution.
+Install \href{https://docs.conda.io/en/latest/miniconda.html}{MiniConda} instead of the full \href{https://docs.anaconda.com/anaconda/install/linux/}{Anaconda} distribution.\\
+
 This helps avoid dependency issues when installing \texttt{mamba}, the better alternative to the
 \texttt{conda} package manager.
 
-Since \texttt{mamba} is a drop-in replacement for \texttt{Conda}, the commands to create environments, search for
-packages and install them is identical. Install anaconda packages as necessary using the \texttt{mamba} package manager.
+Since \texttt{mamba} is a drop-in replacement for \texttt{Conda}, the commands to create environments, search for packages and install them is identical. Install anaconda packages as necessary using the \texttt{mamba} package manager.
 
 
 
@@ -146,8 +145,9 @@ Zotero and Mendeley are the only convenient options in terms of browser plugins 
 \begin{itemize}
 	\item Mendeley is proprietary, has a 2GB online storage limit, has a linux standalone client and a built-in PDF viewer.
 	\item Zotero is open source, has a 300MB storage limit, also has a standalone client and is better at incorporating non-PDF sources.
-	\item ZOtero additionally has a built-in PDF reader, note-taker and annotator which works cross-platform.
+	\item Zotero additionally has a built-in PDF reader, note-taker and annotator which works cross-platform.
 	\item With an institutional email account linked, Zotero provides unlimited storage.
+	\item Calibre for ebook reading and library management. It can use a Onedrive folder as the library location for automatic cloud sync of the books.
 \end{itemize}
 
 
@@ -156,24 +156,26 @@ Zotero and Mendeley are the only convenient options in terms of browser plugins 
 GitHub for the online storage of local git repositories is the easiest to set up.
 
 \begin{itemize}
-	\item Github desktop is available as a downloadable package for Linux. This provides a GUI interface for \texttt{git} commands.
-	\item Install \texttt{git} and the \texttt{git-hub} packages for command line access to github.com. There is no stand-alone linux client as of right now (There is a very nice Windows client though).
+	\item Github desktop is available as a downloadable package for Linux. This provides a GUI interface for \texttt{git} commands. Partially obsoleted by the GitHub functionality built into VSCode
+	\item \texttt{gh} is the official GitHub CLI tool for command line access to github.com.
 \end{itemize}
 
+\subsection{Coud Storage}
+
+OneDrive offers 5GB free cloud storage with a Microsoft account
+
+\href{https://github.com/abraunegg/onedrive/blob/master/docs/ubuntu-package-install.md}{OneDrive for Linux}
+ offers a live sync local directory similar to the Windows client without a GUI. Official repositories provide an older version that is out of date and not supported.
 \subsection{Media Player}
 
-VLC is the one stop solution to all audio and video media with the correct codecs downloaded.
-
-\begin{itemize}
-	\item the package \texttt{ubuntu-restricted-extras} for most of the common codecs.
-	\item VLC from the Software Center
-\end{itemize}
+VLC is the one stop solution to all audio and video media with the correct codecs downloaded. It is bundled with the extended Kubuntu ISO
 
 \subsection{Web Browser}
 
 \begin{itemize}
 	\item Firefox comes pre-packaged. Substitutes for Google Chrome very well.
-	\item Google Chrome Linux installer is only available from their website. Software Center only lists the underlying open source Chromium browser.
+	\item Firefox defaults to the snap installer. Requires manual removal and installation of the ubuntu repository package.
+	\item \href{https://www.google.com/chrome/?platform=linux}{Google Chrome} Linux installer is only available from their website. Software Center only lists the underlying open source Chromium browser.
 	\item Command line web browser package \texttt{lynx}. Useful when GUI access is unavailable.
 
 \end{itemize}
@@ -186,6 +188,8 @@ Install \texttt{variety} and choose a wallpaper source from a downloaded image f
 The Microsoft Office 365 browser-based software does work. A free MS Office 365 account is available to students with an institutional ID. No standalone Linux client for MS Office currently available.
 
 The prepackaged LibreOffice suite is a good enough substitute. For collaborative work or online sharing, Google Docs or Office 365 Shared Docs can work, especially if the other collaborators are running Windows.
+
+\texttt{Xournal++} is a FOSS handwriting and pen-tablet software with PDF annotation and template importing. Good for handwritten documents.
 
 \subsection{Remote Access}
 
